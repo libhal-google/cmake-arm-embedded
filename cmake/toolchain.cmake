@@ -62,7 +62,9 @@ set(CMAKE_ASM_FLAGS "${OBJECT_GEN_FLAGS} -x assembler-with-cpp "
 # --specs=nosys.specs   No syscalls, provide empty implementations for the
 # POSIX system calls.
 set(CMAKE_EXE_LINKER_FLAGS "-Wl,--gc-sections --specs=nano.specs \
-    --specs=nosys.specs -mthumb -mabi=aapcs -Wl,-Map=${CMAKE_PROJECT_NAME}.map"
+    --specs=nosys.specs -mthumb -mabi=aapcs \
+    -Wl,-Map=${CMAKE_PROJECT_NAME}.map \
+    -Wl,--print-memory-usage"
   CACHE INTERNAL "Linker options")
 
 # ------------------------------------------------------------------------------
@@ -165,7 +167,6 @@ function(arm_cortex_print_size_info elf_file)
 endfunction()
 
 function(arm_post_build elf_file)
-  arm_cortex_print_size_info(${elf_file})
   arm_cortex_generate_intel_hex(${elf_file})
   arm_cortex_generate_binary(${elf_file})
   arm_cortex_disassemble(${elf_file})
