@@ -40,3 +40,16 @@ project(project_name LANGUAGES CXX)
 
 > It is crucial to set the value of `CMAKE_TOOLCHAIN_FILE` before `project()` is
 > invoked, because `project()` triggers toolchain detection and verification.
+
+## Available Architecture Flags
+
+- `CORTEX_M4F_FLAGS`: Flags for a cortex M4 processor with a hardware floating
+  point unit.
+- `CORTEX_M4_FLAGS`: Flags for a cortex M4 processor without a floating point
+  unit.
+
+Using these in your `CMakeLists.txt`:
+
+```cmake
+target_compile_options(${PROJECT_NAME} PRIVATE ${CORTEX_M4F_FLAGS})
+```
