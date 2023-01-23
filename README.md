@@ -8,7 +8,7 @@ Add the following line to your `conanfile.txt` to your `[tool_requires]`:
 
 ```
 [tool_requires]
-cmake-arm-embedded/0.1.0
+cmake-arm-embedded/0.1.1
 ```
 
 In order to get access to the `toolchain.cmake` file, the `CMakeToolchain`
@@ -16,7 +16,7 @@ generator must be used. All together you'll need:
 
 ```
 [tool_requires]
-cmake-arm-embedded/0.1.0
+cmake-arm-embedded/0.1.1
 
 [generator]
 CMakeToolchain
