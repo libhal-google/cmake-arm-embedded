@@ -27,10 +27,10 @@ class CmakeArmEmbeddedConan(ConanFile):
         basic_layout(self)
 
     def package(self):
-        self.copy("LICENSE", dst=os.path.join(
+        copy(self, "LICENSE", dst=os.path.join(
             self.package_folder, "licenses"),  src=self.source_folder)
-        self.copy("cmake/toolchain.cmake", src=self.source_folder,
-                  dst=self.package_folder)
+        copy(self, "cmake/toolchain.cmake", src=self.source_folder,
+             dst=self.package_folder)
 
     def package_info(self):
         # Add toolchain.cmake to user_toolchain configuration info to be used
