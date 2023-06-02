@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-20.04, ubuntu-22.04, macos-12, windows-2022 ]
+        os: [ubuntu-20.04, ubuntu-22.04, macos-12, windows-2022]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -36,13 +36,17 @@ jobs:
           fetch-depth: 0
 
       - name: 📥 Install CMake & Conan
-        run: pip3 install cmake conan==1.57.0
+        run: pip3 install cmake conan==2.0.6
 
       - name: 📡 Add `libhal-trunk` conan remote
-        run: conan remote add libhal-trunk https://libhal.jfrog.io/artifactory/api/conan/trunk-conan
+        run: conan remote add libhal-trunk
+          https://libhal.jfrog.io/artifactory/api/conan/trunk-conan
 
-      - name: 📡 Enable conan revision mode
-        run: conan config set general.revisions_enabled=True
+      - name: 📡 Create and setup default profile
+        run: conan profile detect --force
+
+      - name: 👁️‍🗨️ Show conan profile
+        run: conan profile show
 
       - name: 📦 Create Conan Package
         run: conan create .
